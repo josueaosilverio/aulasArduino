@@ -14,14 +14,14 @@ void loop() {
   digitalWrite(LED_BUILTIN, LOW);
   delay(timebtw);
    
-    if(timebtw > 200 && timebtw%2 == 0){
-      timebtw -= 100;
-    }else if (timebtw <= 200 && timebtw%2 == 0){
-      timebtw += 101;
-    }else if (timebtw < 1501 && timebtw%2 == 1){
-      timebtw +=100;
+    if(timebtw > 0 && timebtw%2 == 0){
+      timebtw -= 50;
+    }else if (timebtw <= 0 && timebtw%2 == 0){
+      timebtw += 51;
+    }else if (timebtw < 1001 && timebtw%2 == 1){
+      timebtw += 50;
     } else{
-      timebtw -= 101;
+      timebtw -= 51;
     };
 
     Serial.print("Tempo: ");
