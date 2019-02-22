@@ -9,9 +9,9 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(timebtw);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(timebtw);
+  digitalWrite(LED_BUILTIN, LOW);
   delay(timebtw);
    
     if(timebtw > 200 && timebtw%2 == 0){
