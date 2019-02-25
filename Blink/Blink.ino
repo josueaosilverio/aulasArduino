@@ -9,19 +9,6 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(timebtw);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(timebtw);
-   
-    if (timebtw <= 0 && timebtw%2 == 0){
-      timebtw += 51;
-    }else if (timebtw < 1001 && timebtw%2 == 1){
-      timebtw += 50;
-    } else{
-      timebtw -= 51;
-    };
-
-    Serial.print("Tempo: ");
-    Serial.println(timebtw);
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  delay(timebtw = (timebtw <= 0 && timebtw%2 == 0) ? timebtw += 51 : (timebtw < 1001 && timebtw%2 == 1) ? timebtw += 50 : (timebtw <=1000 && timebtw%2==0) ? timebtw -= 50 : timebtw -= 51);
 }
