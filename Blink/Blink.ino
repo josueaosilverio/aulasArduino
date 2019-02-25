@@ -3,7 +3,7 @@ int timebtw;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("V1.1");
+  Serial.println("V1.2");
   timebtw=1000;
   pinMode(LED_BUILTIN, OUTPUT);
 }
