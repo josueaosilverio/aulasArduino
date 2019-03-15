@@ -17,17 +17,20 @@ void loop()
     {
         digitalWrite(3, HIGH);
         delay(100);        
-        B = map(analogRead(0), 0, 1023, 255, 0);
+        B = constrain(map(analogRead(0), 70, 370, 255, 0), 0, 255);        
+        //B = analogRead(0);
         delay(100);
         digitalWrite(3, LOW);
         digitalWrite(4, HIGH);
         delay(100);        
-        G = map(analogRead(0), 0, 1023, 255, 0);
+        G = constrain(map(analogRead(0), 70, 430, 255, 0), 0, 255);        
+        //G = analogRead(0);
         delay(100);
         digitalWrite(4, LOW);
         digitalWrite(5, HIGH);
         delay(100);        
-        R = map(analogRead(0), 0, 1023, 255, 0);        
+        R = constrain(map(analogRead(0), 70, 370, 255, 0), 0, 255);        
+        //R = analogRead(0);        
         delay(100);
         digitalWrite(5, LOW);
         Serial.print("rgb(");
