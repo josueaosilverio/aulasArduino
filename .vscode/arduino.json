@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "port": "COM4",
-    "sketch": "UnityStuff/unityStuff.ino"
+    "sketch": "ServoBrinquedo/brinquedoLightStuff.ino"
 }
