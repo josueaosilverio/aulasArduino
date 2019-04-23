@@ -31,19 +31,17 @@ void loop()
     //TODO Add Mapping
     wammy = analogRead(sharpWammy);
 
-    if((pitch >= pitchMin && pitch <= pitchMax) && (wammy >= wammyMin && wammy <= wammyMax)){
+    playTone(pitch, wammy);
+
+    /*if((pitch >= pitchMin && pitch <= pitchMax) && (wammy >= wammyMin && wammy <= wammyMax)){
         playTone(pitch, wammy);
     }else
     {
         stopTone();
     }
     ;
-
+*/
     //TODO if in zone play mario song
-    if (false)
-    {
-        song(1);
-    }
 }
 
 void playTone(int tonePitch, int toneWammy)
