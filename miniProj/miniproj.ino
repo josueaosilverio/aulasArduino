@@ -1,22 +1,19 @@
-int sharpPitch = A0;
-int sharpWammy = A1;
+const int sharpPitchR = A0;
+const int sharpPitchL = A1;
 
-int BuzzerL = 5;
-int BuzzerR = 6;
+const int BuzzerL = 5;
+const int BuzzerR = 6;
 
-int pitch = 0;
-int wammy = 0;
+int pitchR;
+int pitchL;
 
-//TODO CALIBRATION
-int pitchMin;
-int pitchMax;
-
-//TODO CALIBRATION
-int wammyMin;
-int wammyMax;
+int counter;
 
 void setup()
 {
+    pitchL = 0;
+    pitchR = 0;
+    counter = 0;
     Serial.begin(9600);
     Serial.println("V1.2");
     pinMode(BuzzerL, OUTPUT);
@@ -25,70 +22,58 @@ void setup()
 
 void loop()
 {
-    //TODO Add Mapping
-    //pitch = analogRead10(sharpPitch);
-    pitch = analogRead8020(pitch, analogRead(sharpPitch));
 
-    //TODO Add Mapping
-    //wammy = analogRead8020(sharpWammy);
+    pitchR = analogRead9010(pitchR, analogRead(sharpPitchR));
+    pitchL = analogRead9010(pitchL, analogRead(sharpPitchL));
 
-    //playTone(pitch, wammy);
+    Serial.print("R:");
+    Serial.println(pitchR);
+    Serial.print("L:");
+    Serial.println(pitchL);
 
-    Serial.println(pitch);
-    tone(BuzzerR, pitch);
+    if (counter % 2 == 0)
+        if ((pitchR < 110))
+        {
+            noTone(BuzzerR);
+        }
+        else
+        {
+            noTone(BuzzerL);
+            tone(BuzzerR, pitchR);
+        };
+    if (counter % 2 == 1)
+        if ((pitchL < 110))
+        {
+            noTone(BuzzerL);
+        }
+        else
+        {
+            noTone(BuzzerR);
+            tone(BuzzerL, pitchL);
+        };
 
-    //Serial.println(wammy);
-
-    /*if((pitch >= pitchMin && pitch <= pitchMax) && (wammy >= wammyMin && wammy <= wammyMax)){
-        playTone(pitch, wammy);
-    }else
-    {
-        stopTone();
-    }
-    ;
-*/
-    //TODO if in zone play mario song
+    counter++;
 }
 
-void playTone(int tonePitch, int toneWammy)
-{
-    tone(BuzzerL, tonePitch);
-    delay(toneWammy);
-    noTone(BuzzerL);
-    tone(BuzzerR, tonePitch);
-    delay(toneWammy);
-    noTone(BuzzerR);
-}
-
-void stopTone()
-{
-    noTone(BuzzerL);
-    noTone(BuzzerR);
-}
-
-int analogRead8020(int oldVal, int newVal)
+int analogRead9010(int oldVal, int newVal)
 {
     return round((0.9 * oldVal) + (0.1 * newVal));
 };
 
-int analogRead10(int pin)
+int analogReadAvg(int pin, int samples)
 {
-    int values[10];
+    int values[samples];
     int avg;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < samples; i++)
     {
         values[i] = analogRead(pin);
     }
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < samples; i++)
     {
         avg += values[i];
     }
 
-    avg = avg/10;
-    if (avg < 0)
-    {
-        avg = avg*-1;
-    }
+    avg = avg / samples;
 
     return avg;
 };
