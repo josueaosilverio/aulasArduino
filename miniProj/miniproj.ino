@@ -31,6 +31,8 @@ void loop()
     Serial.print("L:");
     Serial.println(pitchL);
 
+
+    
     if (counter % 2 == 0)
         if ((pitchR < 110))
         {
